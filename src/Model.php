@@ -351,7 +351,7 @@ SQL;
             $i18n->language = $language;
             $i18n->name = $this->bean->name;
         }
-        return $i18n;
+        return $i18n;                         
     }
     
     /**

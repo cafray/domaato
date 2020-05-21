@@ -74,8 +74,24 @@ Flight::route('(/[a-z]{2})/autocomplete/@type:[a-z]+/@query:[a-z]+', function ($
 });
 
 /**
- * Route to file a report
+ * Route to test profile 
  */
+Flight::route('(/[a-z]{2})/testprofile(@id:[0-9]+)', function ($id) {
+    $profileController = new Controller_Testprofile();
+    $profileController->index($id);
+});
+
+/** 
+ * Route to test profile */
+
+Flight::route('(/[a-z]{2})/add-test-report(/@id:[0-9]+)', function ($id) {
+    $testprofileController = new Controller_Testreport();
+    $testprofileController->add($id);
+});
+
+/** 
+ * Route to file a report */
+
 Flight::route('(/[a-z]{2})/file-a-report(/@id:[0-9]+)', function ($id) {
     $reportController = new Controller_Report();
     if ($id === null) {
@@ -84,6 +100,15 @@ Flight::route('(/[a-z]{2})/file-a-report(/@id:[0-9]+)', function ($id) {
         $reportController->add($id);
     }
 });
+
+/*
+ * Route to add a report from profile page
+ */
+Flight::route('(/[a-z]{2})/add-report(/@id:[0-9]+)', function ($id) {
+    $reportController = new Controller_Report();
+    $reportController->add($id);
+});
+
 
 /**
  * Route to review a report

@@ -61,7 +61,7 @@ class Controller_Login extends Controller
                 R::store($login);
             } catch (Exception $e) {
                 error_log($e);
-                //uups, login could not be saved
+                //uups, login could not be saved 
             }
         }
         // either no yet submitted or the credentials given failed

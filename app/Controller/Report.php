@@ -34,6 +34,13 @@ class Controller_Report extends Controller
      */
     public $records = array();
 
+     /**
+     * Holds a instance of the bean to handle.
+     *
+     * @var RedBean_OODBBean
+     */
+    public $record;
+
     /**
      * Holds a instance of a Pagination class.
      *
@@ -88,7 +95,7 @@ class Controller_Report extends Controller
                 //$this->notifyAbout('error');
             }
         } else {
-            $this->records = Flight::get('user')->placesNearBy();
+            //$this->records = Flight::get('user')->placesNearBy();
         }
         $this->layout = 'index';
         $this->render();

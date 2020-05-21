@@ -187,7 +187,7 @@ class Controller_Scaffold extends Controller
         }
         $this->actions = $this->record->getActions();
         if ( ! isset($_SESSION['scaffold'][$this->type])) {
-            $_SESSION['scaffold'][$this->type]['filter']['id'] = 0;
+             $_SESSION['scaffold'][$this->type]['filter']['id'] = 0;
             // next
             $_SESSION['scaffold'][$this->type]['index']['next_action'] = 'idle';
             $_SESSION['scaffold'][$this->type]['add']['next_action'] = 'add';
