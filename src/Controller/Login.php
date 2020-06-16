@@ -64,7 +64,7 @@ class Controller_Login extends Controller
                 //uups, login could not be saved 
             }
         }
-        // either no yet submitted or the credentials given failed
+        // either not yet submitted or the credentials given failed
         if ( Flight::request()->query->goto == '' || Flight::request()->query->goto == '/login' ) {
             $goto = '/cms';
         } else {
@@ -84,3 +84,4 @@ class Controller_Login extends Controller
         ));
     }
 }
+

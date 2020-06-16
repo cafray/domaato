@@ -162,7 +162,7 @@ class Model_Domain extends Model
      * @return array
      */
     public function getPages($language, $invisible = null)
-    {
+     {
         if ($invisible !== null) {
             return R::find('page', 'domain_id = ? AND language = ? AND invisible = ? ORDER BY sequence', array(
                 $this->bean->getId(),
@@ -208,7 +208,7 @@ class Model_Domain extends Model
      * @return Menu
      */
     public function hierMenu(
-        $url_prefix = '',
+        $url_prefix = '', 
         $lng = null,
         $invisible = false,
                             $attr = 'url',

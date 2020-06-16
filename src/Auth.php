@@ -62,7 +62,7 @@ class Auth extends Controller
     }
 
     /**
-     * Returns wether the maximum session lifetime is over or not.
+     * Returns whether the maximum session lifetime is over or not.
      *
      * @param int max_lifetime is the time in seconds, e.g. 14400 are 4 hours
      * @return bool

@@ -109,7 +109,7 @@ class Model extends RedBean_SimpleModel
         /*
         return array(
             array(
-                'name' => 'id',
+                'name' => 'id',-
                 'sort' => array(
                     'name' => $this->bean->getMeta('type').'.name'
                 ),
@@ -122,7 +122,7 @@ class Model extends RedBean_SimpleModel
     }
     
     /**
-     * Returns a string representing a boolean state of an beans attribute.
+     * Returns a string representing a boolean state of a beans attribute.
      *
      * @param string $attribute name to represent as a true or false string
      * @return string
@@ -235,9 +235,9 @@ SQL;
         }
         return $sql;
     }
-    
+     
     /**
-     * Returns automatic keywords for this bean.
+     * Returns automatic keywords for this bean.\
      *
      * @param array (optional) $tags which the user may has entered
      * @return array
@@ -249,7 +249,7 @@ SQL;
         );
     }
     
-    /**
+    /**f
      * Returns an array of possible actions.
      *
      * Overwrite this function on your bean models.
@@ -502,6 +502,7 @@ SQL;
         $suggest = true;
         foreach ($this->validators as $attribute => $attributeValidators) {
             foreach ($attributeValidators as $validator) {
+  
                 if ( ! $validator->validate($this->bean->$attribute)) {
                     $suggest = false;
                     $this->addError(I18n::__(strtolower(get_class($validator)).'_invalid'), $attribute);

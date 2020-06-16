@@ -13,7 +13,8 @@
  *
  * @todo maybe use language bean? What should happen if a unknown/inactive lang is requested?
  */
-Flight::route('(/@language:[a-z]{2})/*', function ($language) {
+
+ Flight::route('(/@language:[a-z]{2})/*', function ($language) {
     if (in_array($language, Flight::get('possible_languages'))) {
         Flight::set('language', $language);
     }
@@ -40,6 +41,7 @@ Flight::route('(/[a-z]{2})/', function () {
 /**
  * Routes to the login/logout controllers.
  */
+
 Flight::route('(/[a-z]{2})/login', function () {
     $loginController = new Controller_Login();
     $loginController->index();
@@ -52,14 +54,16 @@ Flight::route('(/[a-z]{2})/logout', function () {
 /**
  * Routes to lostpassword controller.
  */
- Flight::route('(/[a-z]{2})/lostpassword', function () {
+
+Flight::route('(/[a-z]{2})/lostpassword', function () {
      $lostpasswordController = new Controller_Lostpassword();
      $lostpasswordController->index();
  });
 
 /**
  * Routes to the admin controller.
- */
+ */                                
+
 Flight::route('(/[a-z]{2})/admin(/index)', function () {
     $adminController = new Controller_Admin();
     $adminController->index();
@@ -67,26 +71,11 @@ Flight::route('(/[a-z]{2})/admin(/index)', function () {
 
 /**
  * Route to autocomplete for jquery backed autocomplete form fields.
- */
+*/
+
 Flight::route('(/[a-z]{2})/autocomplete/@type:[a-z]+/@query:[a-z]+', function ($type, $query) {
     $autocompleteController = new Controller_Autocomplete();
     $autocompleteController->autocomplete($type, $query);
-});
-
-/**
- * Route to test profile 
- */
-Flight::route('(/[a-z]{2})/testprofile(@id:[0-9]+)', function ($id) {
-    $profileController = new Controller_Testprofile();
-    $profileController->index($id);
-});
-
-/** 
- * Route to test profile */
-
-Flight::route('(/[a-z]{2})/add-test-report(/@id:[0-9]+)', function ($id) {
-    $testprofileController = new Controller_Testreport();
-    $testprofileController->add($id);
 });
 
 /** 
@@ -104,7 +93,8 @@ Flight::route('(/[a-z]{2})/file-a-report(/@id:[0-9]+)', function ($id) {
 /*
  * Route to add a report from profile page
  */
-Flight::route('(/[a-z]{2})/add-report(/@id:[0-9]+)', function ($id) {
+
+ Flight::route('(/[a-z]{2})/add-report(/@id:[0-9]+)', function ($id) {
     $reportController = new Controller_Report();
     $reportController->add($id);
 });
@@ -113,7 +103,8 @@ Flight::route('(/[a-z]{2})/add-report(/@id:[0-9]+)', function ($id) {
 /**
  * Route to review a report
  */
-Flight::route('(/[a-z]{2})/review-a-report/@id:[0-9]+', function ($id) {
+
+ Flight::route('(/[a-z]{2})/review-a-report/@id:[0-9]+', function ($id) {
     $reportController = new Controller_Report();
     $reportController->edit($id);
 });
@@ -121,7 +112,8 @@ Flight::route('(/[a-z]{2})/review-a-report/@id:[0-9]+', function ($id) {
 /**
  * Route to add a comment to report bean
  */
-Flight::route('POST (/[a-z]{2})/review-a-report/@id:[0-9]+/comment/add', function ($id) {
+
+ Flight::route('POST (/[a-z]{2})/review-a-report/@id:[0-9]+/comment/add', function ($id) {
     $reportController = new Controller_Report();
     $reportController->comment($id);
 });
@@ -129,7 +121,8 @@ Flight::route('POST (/[a-z]{2})/review-a-report/@id:[0-9]+/comment/add', functio
 /**
  * Route to view a business (person bean)
  */
-Flight::route('(/[a-z]{2})/business/@id:[0-9]+', function ($id) {
+
+ Flight::route('(/[a-z]{2})/business/@id:[0-9]+', function ($id) {
     $businessController = new Controller_Business();
     $businessController->index($id);
 });
@@ -137,7 +130,8 @@ Flight::route('(/[a-z]{2})/business/@id:[0-9]+', function ($id) {
 /**
  * Route to optin to the newsletter
  */
-Flight::route('POST (/[a-z]{2})/newsletter/opt-in', function () {
+
+ Flight::route('POST (/[a-z]{2})/newsletter/opt-in', function () {
     $newsletterController = new Controller_Newsletter();
     $newsletterController->optin();
 });
@@ -145,7 +139,8 @@ Flight::route('POST (/[a-z]{2})/newsletter/opt-in', function () {
 /**
  * Route to newsletter confirmation
  */
-Flight::route('(/[a-z]{2})/newsletter/confirm/@token:[0-9a-zA-Z]+', function ($token) {
+
+ Flight::route('(/[a-z]{2})/newsletter/confirm/@token:[0-9a-zA-Z]+', function ($token) {
     $newsletterController = new Controller_Newsletter();
     $newsletterController->confirm($token);
 });
@@ -153,7 +148,8 @@ Flight::route('(/[a-z]{2})/newsletter/confirm/@token:[0-9a-zA-Z]+', function ($t
 /**
  * Route to Api
  */
-Flight::route('(/[a-z]{2})/api/@apikey:[0-9a-zA-Z]+/@func:[a-zA-Z]+', function ($apikey, $func) {
+
+ Flight::route('(/[a-z]{2})/api/@apikey:[0-9a-zA-Z]+/@func:[a-zA-Z]+', function ($apikey, $func) {
     $apiController = new Controller_Api($apikey);
     $apiController->$func();
 });
@@ -161,15 +157,17 @@ Flight::route('(/[a-z]{2})/api/@apikey:[0-9a-zA-Z]+/@func:[a-zA-Z]+', function (
 /**
  * Routes to the scaffold controller.
  *
- * These routes will handle all models in a basic CURD way.
+ * These routes will handle all models in a basic CRUD way.
  */
-Flight::route('(/[a-z]{2})/admin/@type:[a-z]+/add(/@id:[0-9]+)(/@layout:[a-z]+)', function ($type, $id, $layout) {
+
+ Flight::route('(/[a-z]{2})/admin/@type:[a-z]+/add(/@id:[0-9]+)(/@layout:[a-z]+)', function ($type, $id, $layout) {
     if ($layout === null) {
         $layout = 'table';
     }
     $scaffoldController = new Controller_Scaffold('/admin', $type, $id);
     $scaffoldController->add($layout);
 });
+
 Flight::route('(/[a-z]{2})/admin/@type:[a-z]+/edit/@id:[0-9]+(/@page:[0-9]+)(/@order:[0-9]+)(/@dir:[0-1]{1})(/@layout:[a-z]+)', function ($type, $id, $page, $order, $dir, $layout) {
     if ($layout === null) {
         $layout = 'table';
@@ -220,7 +218,8 @@ Flight::route('(/[a-z]{2})/admin/@type:[a-z]+/attach/@prefix:[a-z]+/@subtype:[a-
 /**
  * Routes to the cms controller.
  */
-Flight::route('(/[a-z]{2})/cms(/index)', function () {
+
+ Flight::route('(/[a-z]{2})/cms(/index)', function () {
     $cmsController = new Controller_Cms();
     $cmsController->index();
 });
@@ -237,6 +236,7 @@ Flight::route('(/[a-z]{2})/cms/sitemap', function () {
 /**
  * Routes to the cms controller to add a new domain.
  */
+
 Flight::route('POST (/[a-z]{2})/cms/add/@type:[a-z]+', function ($type) {
     $cmsController = new Controller_Cms();
     $cmsController->add($type);
@@ -245,7 +245,8 @@ Flight::route('POST (/[a-z]{2})/cms/add/@type:[a-z]+', function ($type) {
 /**
  * Routes to the cms controller to arrange (sort) beans.
  */
-Flight::route('(/[a-z]{2})/cms/sortable/@type:[a-z]+/@var:[a-z]+', function ($type, $var) {
+
+ Flight::route('(/[a-z]{2})/cms/sortable/@type:[a-z]+/@var:[a-z]+', function ($type, $var) {
     $cmsController = new Controller_Cms();
     $cmsController->sortable($type, $var);
 });
@@ -253,7 +254,8 @@ Flight::route('(/[a-z]{2})/cms/sortable/@type:[a-z]+/@var:[a-z]+', function ($ty
 /**
  * Routes to the cms controller to view a domain node.
  */
-Flight::route('(/[a-z]{2})/cms/node/@id:[0-9]+(/@page_id:[0-9]+)', function ($id, $page_id) {
+
+ Flight::route('(/[a-z]{2})/cms/node/@id:[0-9]+(/@page_id:[0-9]+)', function ($id, $page_id) {
     $cmsController = new Controller_Cms();
     $cmsController->node($id, $page_id);
 });
@@ -261,7 +263,8 @@ Flight::route('(/[a-z]{2})/cms/node/@id:[0-9]+(/@page_id:[0-9]+)', function ($id
 /**
  * Routes to the cms controller to update the meta information of a page.
  */
-Flight::route('POST (/[a-z]{2})/cms/meta/@id:[0-9]+', function ($id) {
+
+ Flight::route('POST (/[a-z]{2})/cms/meta/@id:[0-9]+', function ($id) {
     $cmsController = new Controller_Cms();
     $cmsController->meta($id);
 });
@@ -269,7 +272,8 @@ Flight::route('POST (/[a-z]{2})/cms/meta/@id:[0-9]+', function ($id) {
 /**
  * Routes to the cms controller to view a page.
  */
-Flight::route('(/[a-z]{2})/cms/page/@id:[0-9]+', function ($id) {
+
+ Flight::route('(/[a-z]{2})/cms/page/@id:[0-9]+', function ($id) {
     $cmsController = new Controller_Cms();
     $cmsController->page($id);
 });
@@ -277,7 +281,8 @@ Flight::route('(/[a-z]{2})/cms/page/@id:[0-9]+', function ($id) {
 /**
  * Routes to the cms controller to edit a slice.
  */
-Flight::route('(/[a-z]{2})/cms/slice/@id:[0-9]+', function ($id) {
+
+ Flight::route('(/[a-z]{2})/cms/slice/@id:[0-9]+', function ($id) {
     $cmsController = new Controller_Cms();
     $cmsController->slice($id);
 });

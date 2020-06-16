@@ -244,7 +244,7 @@ class Controller_Scaffold extends Controller
     }
 
     /**
-     * Returns true or false wether the bean was stored or not.
+     * Returns true or false whether the bean was stored or not.
      *
      * The current bean is challanged to be stored wrapped in a transaction. When the bean was
      * successfully stored a message is send to the user telling about that. In case the store
